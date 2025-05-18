@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAVEL MITHRA- Your Mobility Guide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #e0f2f7);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto; 
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: url('/static/images/bengaluru_transport_bg_light.jpg') center/cover no-repeat; /* Replace with your image */
+            color: #fff;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .search-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .search-option {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            width: 250px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .search-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .search-option a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .search-option .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #00aaff; 
+        }
+
+        .search-option .label {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .about-section {
+            background-color: #f9f9f9;
+            padding: 40px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .about-section h2 {
+            color: #007bff;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: #555;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+
+            .hero {
+                padding: 40px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .search-options {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .search-option {
+                width: 80%;
+                padding: 25px;
+            }
+
+            .search-option .icon {
+                font-size: 2.5em;
+            }
+
+            .search-option .label {
+                font-size: 1.2em;
+            }
+
+            .about-section h2 {
+                font-size: 1.8em;
+            }
+
+            .about-section p {
+                font-size: 1em;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo">Travel Mithra (DK Transport)</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/search-bus/"><i class="fas fa-bus"></i> Buses</a>
+                <a href="/search-train/"><i class="fas fa-train"></i> Trains</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> About</a>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Navigate DK with Ease</h1>
+                <p>Your comprehensive guide to bus and train timetables in Dakshina Kannada(Sullia,Puttur,Kadaba,Bantwal,Mangalore,Belthangady,Moodbidri). Find the best routes for your commute, explore the city, and plan your journeys efficiently.</p>
+            </div>
+        </div>
+
+        <div class="search-options">
+            <div class="search-option">
+                <a href="/search-bus/">
+                    <div class="icon"><i class="fas fa-bus"></i></div>
+                    <div class="label">Find Bus Timetables</div>
+                    <p class="description">Search for bus routes, arrival & departure times, and via stops across DK.</p>
+                </a>
+            </div>
+
+            <div class="search-option">
+                <a href="/search-train/">
+                    <div class="icon"><i class="fas fa-train"></i></div>
+                    <div class="label">Find Train Timetables</div>
+                    <p class="description">Explore train schedules, station information, and days of service for your travel needs.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>About Travel Mithra</h2>
+            <p>Welcome to your dedicated platform for accessing reliable and up-to-date bus and train timetables in the vibrant city of Dakshina Kananda. We understand the importance of efficient public transport for daily commutes and city exploration. Our goal is to provide you with a seamless experience to find the information you need quickly and easily.</p>
+            <p>We are committed to continuously improving our services and data accuracy to ensure you have the best possible travel planning tools at your fingertips. Stay informed and travel smart with Travel Mitra!</p>
+        </div>
+
+        <footer>
+            &copy; 2025 Travel Mitra| <a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms of Service</a>
+        </footer>
+    </div>
+    <script>
+    </script>
+</body>
+</html>

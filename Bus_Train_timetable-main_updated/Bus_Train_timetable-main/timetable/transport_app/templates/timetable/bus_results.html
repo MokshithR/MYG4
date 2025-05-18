@@ -1,0 +1,397 @@
+{% load custom_filters %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Search Results - DK Transport</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #e0f2f7); 
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto; 
+            padding: 20px;
+        }
+      
+        header {
+            background-color: #fff;
+            padding: 20px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #00acc1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #00838f;
+        }
+
+        h1, h2, h6 {
+            color: #006064;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #b0bec5;
+            width: 220px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #26c6da;
+            box-shadow: 0 0 5px rgba(38, 198, 218, 0.5);
+        }
+
+        button[type="submit"] {
+            padding: 10px 24px;
+            background-color: #00acc1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #00838f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden; 
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #00acc1;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f1f8f9;
+        }
+
+        tr:hover {
+            background-color: #e0f2f1;
+        }
+
+        .extra-info {
+            display: none; 
+            background-color: #f1f8f9;
+        }
+
+        .expandable-row:hover {
+            cursor: pointer;
+            background-color: #d1e4e6; 
+        }
+
+        /* PDF Button */
+        .download-button-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .download-pdf-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #dc3545; /* Red color for PDF */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .download-pdf-button:hover {
+            background-color: #c82333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            form {
+                flex-direction: column;
+                align-items: center;
+            }
+            input[type="text"], button[type="submit"] {
+                width: 90%; 
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                font-weight: bold;
+                text-align: left;
+                color: #00796b;
+            }
+            
+            tr td:last-child {
+                border-bottom: 0;
+            }
+
+            .extra-info td {
+                text-align: left; 
+                padding-left: 15px; 
+            }
+            .extra-info td::before {
+                content: none; 
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const rows = document.querySelectorAll(".expandable-row");
+            rows.forEach(row => {
+                row.addEventListener("click", function() {
+                    const nextRow = row.nextElementSibling;
+                    if (nextRow && nextRow.classList.contains("extra-info")) {
+                        if (nextRow.style.display === "table-row" || nextRow.style.display === "") {
+                            nextRow.style.display = "none";
+                        } else {
+                            nextRow.style.display = "table-row";
+                        }
+                    }
+                });
+            });
+
+            $(function() {
+                var cache = {}; 
+                $("input[name='start'], input[name='destination']").autocomplete({
+                    minLength: 1, 
+                    source: function(request, response) {
+                        var term = request.term;
+                        if (term in cache) {
+                            response(cache[term]);
+                            return;
+                        }
+                       
+                        $.getJSON("/suggest/", { term: term }, function(data) {
+                            cache[term] = data;
+                            response(data);
+                        });
+                    },
+                  
+                    open: function() {
+                        var ul = $(this).autocomplete('widget');
+                        ul.find('li').each(function() {
+                            var text = $(this).text();
+                            var regex = new RegExp('(' + $.ui.autocomplete.escapeRegex(this.element.value) + ')', 'gi');
+                            $(this).html(text.replace(regex, '<strong>$1</strong>'));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="logo"> Travel Mithra</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/search-bus/"><i class="fas fa-bus"></i> Buses</a>
+                <a href="/search-train/"><i class="fas fa-train"></i> Trains</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> About</a>
+            </nav>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        </div>
+
+        <h1>🚌 Bus Route Search</h1>
+        <form method="get">
+            <input type="text" name="start" value="{{ request.GET.start }}" placeholder="Start Location" required>
+            <input type="text" name="destination" value="{{ request.GET.destination }}" placeholder="Destination" required>
+            {# Datalist provides basic suggestions, but jQuery UI Autocomplete is better for "fuzzy" search #}
+            <datalist id="locations">
+                {# This datalist will be populated by the jQuery UI Autocomplete, but remains as a fallback #}
+            </datalist>
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>Available Buses</h2>
+        <h6>For more details click on the bus table</h6>
+
+        <div class="download-button-container">
+            {% if buses %} {# Only show PDF button if there are results #}
+                <a href="{% url 'download_bus_pdf' %}?start={{ request.GET.start|urlencode }}&destination={{ request.GET.destination|urlencode }}" class="download-pdf-button">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </a>
+            {% endif %}
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Bus Number</th>
+                    <th>Type</th>
+                    <th>Arrival Time</th>
+                    <th>Departure Time</th>
+                    <th>Reaching Time</th>
+                    <th>Start</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for bus in buses %}
+                <tr class="expandable-row">
+                    <td data-label="Bus Number">{{ bus.number }}</td>
+                    <td data-label="Type">{{ bus.bus_type }}</td>
+                    <td data-label="Arrival Time">{{ bus.arrival_time|time:"h:i A" }}</td>
+                    <td data-label="Departure Time">{{ bus.departure_time|time:"h:i A" }}</td>
+                    <td data-label="Reaching Time">{{ bus.reaching_time|time:"h:i A" }}</td>
+                    <td data-label="Start">{{ bus.start_point }}</td>
+                    <td data-label="Destination">{{ bus.destination_point }}</td>
+                </tr>
+                <tr class="extra-info">
+                    <td colspan="7"> {# Adjust colspan based on number of columns in main table #}
+                        <strong>Via Stops & Times:</strong><br>
+                        {% if bus.get_via_with_times %} {# Corrected: Call the method #}
+                            <ul class="list-unstyled mb-0 small">
+                                {% for stop, time in bus.get_via_with_times %} {# Corrected: Call the method #}
+                                    <li>• {{ stop|trim }} {% if time %}<span style="color: gray;">({{ time|trim }})</span>{% endif %}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No buses found for the selected route ("If not selected please select the route").</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <footer>
+            &copy; 2025 Travel Mithra | <a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms of Service</a> | <a href="/contact/">Contact Us</a>
+        </footer>
+    </div>
+</body>
+</html>

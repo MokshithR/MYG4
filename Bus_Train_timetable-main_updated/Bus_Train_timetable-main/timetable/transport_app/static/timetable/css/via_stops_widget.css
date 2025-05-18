@@ -1,0 +1,54 @@
+/* timetable/static/timetable/css/via_stops_widget.css */
+
+.via-stops-widget .via-stops-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 10px; /* Space between elements */
+}
+
+.via-stops-widget .via-stops-item input[type="text"] {
+    flex: 1; /* Inputs take up available space */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.via-stops-widget .remove-item-button {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.via-stops-widget .add-item-button {
+    background-color: #28a745; /* Green for add */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Hide the original textarea */
+.via-stops-widget textarea {
+    display: none !important;
+}
+
+/* General styling for the container */
+.via-stops-widget {
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.via-stops-widget .header {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
